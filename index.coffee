@@ -15,17 +15,15 @@ module.exports = (name) ->
     # Do nothing if no contents
     if file.isNull()
       @push file
-      return done()
 
     # Error if file is a stream
     if file.isStream()
       @emit "error", new gutil.PluginError("gulp-filenames", "Stream content is not supported")
-      return done()
   
     if file.isBuffer()
       module.exports.register(file, name)
+      @push file
 
-    #Return control to the stream
     done()
 
   through.obj filenames
