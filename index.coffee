@@ -24,7 +24,7 @@ module.exports = (name) ->
       module.exports.register(file, name)
       @push file
 
-    done()
+    done(null, file)
 
   through.obj filenames
   
