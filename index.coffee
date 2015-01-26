@@ -5,13 +5,15 @@ gutil = require("gulp-util")
 # Register every filename that has passed through
 # Options:
 # * name
-
+# * options
+# * options.overrideMode
+# * override previous files when a new one passes through
 file_names = {}
 
-module.exports = (name) ->
+module.exports = (name, options = {}) ->
 
   filenames = (file, enc, done) ->
-    
+
     # Do nothing if no contents
     if file.isNull()
       @push file
@@ -19,17 +21,17 @@ module.exports = (name) ->
     # Error if file is a stream
     if file.isStream()
       @emit "error", new gutil.PluginError("gulp-filenames", "Stream content is not supported")
-  
+
     if file.isBuffer()
-      module.exports.register(file, name)
+      module.exports.register(file, name, options)
       @push file
 
     done(null, file)
 
   through.obj filenames
-  
+
 # Retrieve a specific hash of filenames. 'all' to get everything.
-# You can also retrieve 'relative', 'base', 'full' or 'all' of the file name. 
+# You can also retrieve 'relative', 'base', 'full' or 'all' of the file name.
 # Default is an array of relative paths.
 
 module.exports.get = (name='default', what='relative') ->
@@ -55,8 +57,13 @@ module.exports.forget = (name='default')->
   file_names[name] = {}
 
 # Register a file name/path in a namespaced array
-module.exports.register = (file, name = "default")->
-  file_names[name] ?= []
+module.exports.register = (file, name = "default", options)->
+
+  if options.overrideMode
+    file_names[name] = []
+  else
+    file_names[name] ?= []
+
   file_names[name].push
     relative: file.relative
     full: file.path
