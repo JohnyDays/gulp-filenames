@@ -31,11 +31,17 @@ filenames.get("coffeescript") // ["a.coffee","b.coffee"]
 
 ## API
 
-### filenames([name])
+### filenames([name], [options])
 
 #### name
 
 Namespace the filenames
+
+### options
+
+#### overrideMode (default: false)
+
+override previous files when a new one passes through
 
 ### filenames.get([name], [what])
 
