@@ -54,7 +54,7 @@ module.exports.get = (name='default', what='relative') ->
 # Remove a specific filename hash. 'all' to empty everything
 module.exports.forget = (name='default')->
   file_names = {} if name is 'all'
-  file_names[name] = {}
+  file_names[name] = []
 
 # Register a file name/path in a namespaced array
 module.exports.register = (file, name = "default", options)->
