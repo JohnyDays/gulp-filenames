@@ -11,6 +11,15 @@ filenames = require "../"
 
 describe "gulp-filenames", ->
 
+	it "Should count every file", (done) ->
+		gulp.src("./test/files/**/*")
+			.pipe filenames('concat')
+			.pipe gulp.dest("./test/dump")
+			.on "end", ->
+				all_files = filenames.get('concat')
+				all_files.length.should.eql 16
+				done()
+
 	it "Should grab the name of every file that passes through it", (done)->
 
 		gulp.src("./test/files/**/*")
