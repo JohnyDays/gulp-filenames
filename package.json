@@ -12,7 +12,8 @@
   },
   "repository": "JohnyDays/gulp-filenames",
   "scripts": {
-    "test": "mocha -w . --compilers coffee:coffee-script/register test"
+    "test": "mocha -w . --compilers coffee:coffee-script/register test",
+    "build": "coffee -w index.coffee"
   },
   "dependencies": {
     "gulp-util": "~2.2.0",

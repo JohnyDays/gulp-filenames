@@ -18,7 +18,7 @@ describe "gulp-filenames", ->
 			.pipe gulp.dest("./test/dump")
 			.on "end", ->
 				all_files = filenames.get()
-				all_files.should.eql ["a.cc","a.txt","b.txt"]
+				all_files.should.eql ["a.cc", "a.empty", "a.txt","b.txt"]
 				done()
 
 	it "Supports namespacing", (done)->
@@ -53,4 +53,11 @@ describe "gulp-filenames", ->
 				all_files.length.should.eql 1
 				done()
 
-
+	it "Supports empty files", (done)->
+		gulp.src("./test/files/*.empty")
+			.pipe filenames("empty")
+			.pipe gulp.dest("./test/dump")
+			.on "end", ->
+				empty_files = filenames.get("empty")
+				empty_files.should.eql ["a.empty"]
+				done()
