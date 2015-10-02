@@ -15,16 +15,16 @@
     "test": "mocha -w . --compilers coffee:coffee-script/register test"
   },
   "dependencies": {
-    "through2": "*",
     "gulp-util": "~2.2.0",
-    "coffee-script": "~1.7.1"
+    "through2": "*"
   },
   "devDependencies": {
-    "mocha": "*",
+    "coffee-script": "^1.7.1",
     "coveralls": "*",
     "event-stream": "*",
-    "should": "~2.1.0",
-    "gulp": "~3.8.7"
+    "gulp": "~3.8.7",
+    "mocha": "*",
+    "should": "~2.1.0"
   },
   "engines": {
     "node": ">=0.8.0",
