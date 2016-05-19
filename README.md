@@ -50,7 +50,7 @@ Get only these filenames ("all" to get everything)
 
 #### what
 
-"relative" or "full" or "path" for an array of filenames
+"relative" or "full" or "base" for an array of filenames
 
 "all" for an array of objects
 

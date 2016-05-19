@@ -45,7 +45,9 @@ module.exports.get = (name='default', what='relative') ->
     when 'all'
       file_names[name] ?= []
       file_names[name]
-    else (file_name.relative for file_name in file_names[name])
+    else
+      file_names[name] ?= []
+      (file_name.relative for file_name in file_names[name])
 
 # Remove a specific filename hash. 'all' to empty everything
 module.exports.forget = (name='default')->
