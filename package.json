@@ -16,6 +16,7 @@
     "build": "coffee -w index.coffee"
   },
   "dependencies": {
+    "coffee-script": "^1.10.0",
     "gulp-util": "~2.2.0",
     "through2": "*"
   },
