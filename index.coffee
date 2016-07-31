@@ -20,7 +20,6 @@ module.exports = (name, options = {}) ->
 
     if file.isBuffer()
       module.exports.register(file, name, options)
-      @push file
 
     done(null, file)
 

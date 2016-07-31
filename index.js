@@ -19,7 +19,6 @@
       }
       if (file.isBuffer()) {
         module.exports.register(file, name, options);
-        this.push(file);
       }
       return done(null, file);
     };
