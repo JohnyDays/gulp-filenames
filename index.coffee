@@ -13,14 +13,7 @@ file_names = {}
 module.exports = (name, options = {}) ->
 
   filenames = (file, enc, done) ->
-
-    # Error if file is a stream
-    if file.isStream()
-      @emit "error", new gutil.PluginError("gulp-filenames", "Stream content is not supported")
-
-    if file.isBuffer()
-      module.exports.register(file, name, options)
-
+    module.exports.register(file, name, options)
     done(null, file)
 
   through.obj filenames

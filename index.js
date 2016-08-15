@@ -14,12 +14,7 @@
       options = {};
     }
     filenames = function(file, enc, done) {
-      if (file.isStream()) {
-        this.emit("error", new gutil.PluginError("gulp-filenames", "Stream content is not supported"));
-      }
-      if (file.isBuffer()) {
-        module.exports.register(file, name, options);
-      }
+      module.exports.register(file, name, options);
       return done(null, file);
     };
     return through.obj(filenames);
