@@ -1,13 +1,13 @@
 # global describe, it
 
-fs         = require "fs"
-es         = require "event-stream"
-should     = require "should"
-mocha      = require "mocha"
+fs        = require "fs"
+es        = require "event-stream"
+should    = require "should"
+mocha     = require "mocha"
 
-gulp       = require "gulp"
-source     = require('vinyl-source-stream');
-filenames  = require "../"
+gulp      = require "gulp"
+source    = require('vinyl-source-stream');
+filenames = require "../"
 
 describe "gulp-filenames", ->
 
