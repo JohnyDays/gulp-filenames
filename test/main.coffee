@@ -6,7 +6,7 @@ should    = require "should"
 mocha     = require "mocha"
 
 gulp      = require "gulp"
-gutil     = require "gulp-util"
+source    = require('vinyl-source-stream');
 filenames = require "../"
 
 describe "gulp-filenames", ->
@@ -53,11 +53,25 @@ describe "gulp-filenames", ->
 				all_files.length.should.eql 1
 				done()
 
+
 	it "Supports empty files", (done)->
+
 		gulp.src("./test/files/*.empty")
 			.pipe filenames("empty")
 			.pipe gulp.dest("./test/dump")
 			.on "end", ->
 				empty_files = filenames.get("empty")
 				empty_files.should.eql ["a.empty"]
+				done()
+
+
+	it "Works with streams", (done)->
+
+		fs.createReadStream('./test/files/a.txt')
+			.pipe source("a.txt")
+			.pipe filenames("streams")
+			.pipe gulp.dest("./test/dump")
+			.on "end", ->
+				all_files = filenames.get("streams")
+				all_files.should.eql ["a.txt"]
 				done()
