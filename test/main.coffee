@@ -11,6 +11,9 @@ filenames = require "../"
 
 describe "gulp-filenames", ->
 
+	before () ->
+	   	filenames.forget("all")
+
 	it "Should grab the name of every file that passes through it", (done)->
 
 		gulp.src("./test/files/**/*")
@@ -28,7 +31,7 @@ describe "gulp-filenames", ->
 			.pipe gulp.dest("./test/dump")
 			.on "end", ->
 				txt_files = filenames.get("txt")
-				txt_files.should.eql ["a.txt","b.txt"]
+				txt_files.should.eql ["a.txt", "b.txt"]
 				done()
 
 	it "Can retrieve different things using options", ->
@@ -39,7 +42,6 @@ describe "gulp-filenames", ->
 	it "Can forget", ->
 
 		filenames.forget("txt")
-
 		filenames.get("txt").should.be.empty
 
 
@@ -65,13 +67,27 @@ describe "gulp-filenames", ->
 				done()
 
 
-	it "Works with streams", (done)->
+	it "Should not allow the 'all' namespace", (done)->
 
-		fs.createReadStream('./test/files/a.txt')
-			.pipe source("a.txt")
-			.pipe filenames("streams")
+		try
+			gulp.src("./test/files/**.*")
+				.pipe filenames("all")
+				.pipe gulp.dest("./test/dump")
+				.on "end", ->
+					thrown_files = filenames.get("throw")
+					thrown_files.should.be.empty
+					done()
+		catch e
+		     e.should.equal("'all' is a reserved namespace")
+			 done()
+
+
+	it "Should allow the 'default' namespace", (done)->
+
+		gulp.src("./test/files/**.*")
+			.pipe filenames("default")
 			.pipe gulp.dest("./test/dump")
 			.on "end", ->
-				all_files = filenames.get("streams")
-				all_files.should.eql ["a.txt"]
+				default_files = filenames.get("default")
+				default_files.should.eql ["a.cc", "a.empty", "a.txt", "b.txt"]
 				done()

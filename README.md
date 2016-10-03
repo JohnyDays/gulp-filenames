@@ -25,7 +25,7 @@ gulp.src("./src/*.js")
   .pipe(filenames("javascript"))
   .pipe(gulp.dest("./dist"));
 
-filenames.get("coffeescript") // ["a.coffee","b.coffee"] 
+filenames.get("coffeescript") // ["a.coffee","b.coffee"]
                               // Do Something With it
 ```
 
@@ -35,7 +35,7 @@ filenames.get("coffeescript") // ["a.coffee","b.coffee"]
 
 #### name
 
-Namespace the filenames
+Namespace the filenames. Do not use the name "all" which is reserved by gulp-filenames to retrieve all namespaces.
 
 ### options
 
@@ -45,7 +45,7 @@ override previous files when a new one passes through
 
 ### filenames.get([name], [what])
 
-#### name 
+#### name
 Get only these filenames ("all" to get everything)
 
 #### what
@@ -53,6 +53,11 @@ Get only these filenames ("all" to get everything)
 "relative" or "full" or "base" for an array of filenames
 
 "all" for an array of objects
+
+### filenames.forget(name)
+
+#### name
+Forget the filenames stored in namespace "name" ("all" to forget all files). gulp-filenames does not clear a namespace between runs by design.
 
 ## License
 

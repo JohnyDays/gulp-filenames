@@ -10,7 +10,12 @@ gutil = require("gulp-util")
 # * override previous files when a new one passes through
 file_names = {}
 
+_default = if global.Symbol then Symbol('default') else '__default__'
+
 module.exports = (name, options = {}) ->
+
+  if (name == 'all')
+    throw "'all' is a reserved namespace"
 
   filenames = (file, enc, done) ->
     module.exports.register(file, name, options)
@@ -22,7 +27,7 @@ module.exports = (name, options = {}) ->
 # You can also retrieve 'relative', 'base', 'full' or 'all' of the file name.
 # Default is an array of relative paths.
 
-module.exports.get = (name='default', what='relative') ->
+module.exports.get = (name = _default, what = 'relative') ->
   return file_names if name is 'all'
   switch what
     when 'relative'
@@ -42,13 +47,12 @@ module.exports.get = (name='default', what='relative') ->
       (file_name.relative for file_name in file_names[name])
 
 # Remove a specific filename hash. 'all' to empty everything
-module.exports.forget = (name='default')->
+module.exports.forget = (name = _default)->
   file_names = {} if name is 'all'
   file_names[name] = []
 
 # Register a file name/path in a namespaced array
-module.exports.register = (file, name = "default", options)->
-
+module.exports.register = (file, name = _default, options)->
   if options.overrideMode
     file_names[name] = []
   else
