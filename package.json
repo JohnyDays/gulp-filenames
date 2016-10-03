@@ -19,8 +19,9 @@
   "repository": "JohnyDays/gulp-filenames",
   "scripts": {
     "test": "mocha -w . --compilers coffee:coffee-script/register test",
-	"debtest": "node-inspector -p 9999 & mocha --compilers coffee:coffee-script/register test --debug-brk",
-    "build": "coffee -c -w index.coffee"
+	  "debtest": "node-inspector -p 9999 & mocha --compilers coffee:coffee-script/register test --debug-brk",
+    "build": "coffee -c -w index.coffee",
+    "btest": "coffee -c test/main.coffee"
   },
   "dependencies": {
     "gulp-util": "~2.2.0",
