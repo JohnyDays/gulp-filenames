@@ -24,6 +24,7 @@ describe "gulp-filenames", ->
 				all_files.should.eql ["a.cc", "a.empty", "a.txt","b.txt"]
 				done()
 
+
 	it "Supports namespacing", (done)->
 
 		gulp.src("./test/files/*.txt")
@@ -34,10 +35,12 @@ describe "gulp-filenames", ->
 				txt_files.should.eql ["a.txt", "b.txt"]
 				done()
 
+
 	it "Can retrieve different things using options", ->
 
 		filenames.get("txt", "all"     )[0] .should.be.object
 		filenames.get("txt", "relative")[0] .should.be.string
+
 
 	it "Can forget", ->
 
@@ -90,4 +93,16 @@ describe "gulp-filenames", ->
 			.on "end", ->
 				default_files = filenames.get("default")
 				default_files.should.eql ["a.cc", "a.empty", "a.txt", "b.txt"]
+				done()
+
+
+	it "Works with streams", (done)->
+
+		fs.createReadStream('./test/files/a.txt')
+			.pipe source("a.txt")
+			.pipe filenames("streams")
+			.pipe gulp.dest("./test/dump")
+			.on "end", ->
+				all_files = filenames.get("streams")
+				all_files.should.eql ["a.txt"]
 				done()
