@@ -1,6 +1,6 @@
 {
   "name": "gulp-filenames",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Register every filename that has passed through",
   "keywords": [
     "gulpplugin"
@@ -24,7 +24,7 @@
     "btest": "coffee -c test/main.coffee"
   },
   "dependencies": {
-    "gulp-util": "~2.2.0",
+    "gulp-util": ">=2.2.0",
     "through2": "*"
   },
   "devDependencies": {
@@ -33,7 +33,7 @@
     "event-stream": "*",
     "gulp": "^3.8.5",
     "mocha": "*",
-    "should": "~2.1.0",
+    "should": "^2.1.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "engines": {
