@@ -1,6 +1,6 @@
 {
   "name": "gulp-filenames",
-  "version": "3.8.6",
+  "version": "4.0.1",
   "description": "Register every filename that has passed through",
   "keywords": [
     "gulpplugin"
