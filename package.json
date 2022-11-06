@@ -1,6 +1,6 @@
 {
   "name": "gulp-filenames",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Register every filename that has passed through",
   "keywords": [
     "gulpplugin"
@@ -11,15 +11,15 @@
     "url": "https://github.com/JohnyDays"
   },
   "contributors": [
-	{
-	"name": "Bruce MacNaughton",
-	"email": "bmacnaughton@gmail.com"
-	}
+    {
+      "name": "Bruce MacNaughton",
+      "email": "bmacnaughton@gmail.com"
+    }
   ],
   "repository": "JohnyDays/gulp-filenames",
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register test",
-	  "debtest": "node-inspector -p 9999 & mocha --compilers coffee:coffee-script/register test --debug-brk",
+    "debtest": "node-inspector -p 9999 & mocha --compilers coffee:coffee-script/register test --debug-brk",
     "build": "coffee -c -w index.coffee",
     "btest": "coffee -c test/main.coffee"
   },
