@@ -1,5 +1,4 @@
 through = require("through2")
-gutil = require("gulp-util")
 
 # gulp-filenames
 # Register every filename that has passed through
