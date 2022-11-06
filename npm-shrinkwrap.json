@@ -1,6 +1,6 @@
 {
   "name": "gulp-filenames",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "dependencies": {
     "core-util-is": {
       "version": "1.0.3",
